@@ -11,31 +11,33 @@ const createEsbuildPlugin =
 
 module.exports = defineConfig({
     e2e: {
+
+        experimentalStudio: true,  // con este comando yo puedo grabar paso por paso lo que va ahaciendo y dsp te genera el test solo
         baseUrl: "https://demoqa.com/",
         chromeWebSecurity: false,
 
-        setupNodeEvents(on, config) {
-        //    on('file:preprocessor', cucumber())
-        },
-        specPattern: "cypress/e2e/*.feature",
+        // setupNodeEvents(on, config) {
+        // //    on('file:preprocessor', cucumber())
+        // },
+        // //specPattern: "cypress/e2e/*.feature",
 
 
-          async setupNodeEvents(on, config) {
-            const bundler = createBundler({
-              plugins: [createEsbuildPlugin(config)],
-            });
+        //   async setupNodeEvents(on, config) {
+        //     const bundler = createBundler({
+        //       plugins: [createEsbuildPlugin(config)],
+        //     });
 
-            on('file:preprocessor', bundler);
+        //     on('file:preprocessor', bundler);
 
-            await addCucumberPreprocessorPlugin(on, config);
+        //     await addCucumberPreprocessorPlugin(on, config);
 
-            return config;
-          },
-          specPattern: 'cypress/e2e/**/*.feature',
-          supportFile: false,
-          stepDefinitions: [
-            'cypress/e2e/Cucumber2/**/*.{js,mjs,ts,tsx}',
-            'cypress/support/step_definitions/**/*.{js,mjs,ts,tsx}'
-          ]
+        //     return config;
+        //   },
+        //   //specPattern: 'cypress/e2e/**/*.feature',
+        //   supportFile: false,
+        //   stepDefinitions: [
+        //     'cypress/e2e/Cucumber2/**/*.{js,mjs,ts,tsx}',
+        //     'cypress/support/step_definitions/**/*.{js,mjs,ts,tsx}'
+        //   ]
     }
 });
